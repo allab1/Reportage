@@ -8,7 +8,7 @@
      * @return {Object} exports
      * @api public
      */
-
+     var allfiles=[];
     function require(name) {
         var module = require.modules[name];
         if (!module) throw new Error('failed to require "' + name + '"');
@@ -413,11 +413,15 @@
                         file.previewTemplate = file.previewElement;
                         this.previewsContainer.appendChild(file.previewElement);
                         _ref = file.previewElement.querySelectorAll("[data-dz-name]");
+                      //  allfiles.push(file.name);
+
+                      //$("#fichiers").append(file.name+"<br>");
                         for (_i = 0, _len = _ref.length; _i < _len; _i++) {
                             //node = _ref[_i];
-                        var dt=new Date().getUTCMilliseconds()*60;
-                            $("#fichiers").append("<ul id="+dt+"><a   onclick=\"rmfolder('"+dt+"')\"><i class='fa fa-times'></i></a>&nbsp; &nbsp;"+file.name+" </ul> ");
+                        var dt=parseInt(new Date().getTime());
+                            $("#fichiers").append("<li id="+dt+"><a   onclick=\"rmfolder('"+dt+"')\"><i class='fa fa-times'></i></a>&nbsp; &nbsp;<span id=_"+dt+">"+file.name+"</span> </li> ");
                            // node.textContent = file.name;
+                           
 
                         }
                         _ref1 = file.previewElement.querySelectorAll("[data-dz-size]");

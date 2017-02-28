@@ -1,0 +1,172 @@
+Formulaire saisie reporter - Modifications suite à la réunion chez ATD  (Baillet) du mardi 21 février 2017
+==========================================================================================================
+- Le lien "Log out" donne sur une page introuvable. (/login.htm)
+  ==> S'il n'a pas raison d'être, lien à retirer
+
+- Une seule langue par formulaire de saisie "Reporter"
+	(==> à priori plus besion d'i18n)
+	==> 1 seule description générale du reportage
+	==> 1 seule description par article
+	==> noter dans la sauvegarde et le fichier résultant (XML-EAD ?) la langue utilisée (au niveau de la description générale)
+
+Partie "Description de reportage"
+---------------------------------------------------------------
+ - 1 seule description générale du reportage (dans la langue du formulaire)
+ - Titre "Description de reportage Français | Anglais | Espagnol" ===> à changer en "Description de reportage"
+ - ajout d'un champs "Nom du reportage"
+	===> à la validation de la modale de description du reportage ===> la racine de l'arbo' reprend ce nom
+
+Partie "Fichier Upload"
+-----------------------
+
+- Partie "Description de structure Structuration du paquet"
+-----------------------------------------------------------
+ - suppression de l'icône "répertoire (blanc)" au niveau de la racine
+ - mettre l'icône de menu contextuel
+
+
+Selon mail Georges (mar. 14/02/2017 12:30)
+------------------------------------------
+[Dans un dossier terminal = article...] "Mais à chaque objet on a des renseignements qui dépendent de la nature des objets. La nature, la localisation, éventuellement la langue, l’utilisation dans l’indexation plein texte etc."
+	==> Question posée à Georges pour savoir s'il s'agit de saisir ces méta-données de documents sur cette interface "reporter" (ou ultérieurment, par les archivistes)
+	===> Attendre la réponse
+
+
+AMELIO / RAF
+============
+
+- Partie "Description de structure Structuration du paquet"
+-----------------------------------------------------------
+ - mettre l'icône de menu contextuel d'un répertoire à droite de son nom
+ - enroulement/déroulement d'une partie de l'arborescence par clic sur icône [+]/[-] à gauche du nom d'un répertoire
+ - prévoir 2 boutons [Enrouler tout] / [Dérouler tout] qui agissent sur l'ensemble de l'arborescence en 1 clic
+ - implémenter 
+	===> la création de l'objet (JSON) représentant l'arborescence
+	===> l'édition des méta-données (nécessite la lecture et la modification de l'objet JSON)
+	===> conversion JSON <=> XML (format "libre", puis XML-EAD à terme ?)
+ - [idée à creuser] enregistrement du nom saisi du (ou des ?) reporter(s) pour les réafficheer par défaut (ou une liste des différents déjà saisis)
+	===> pour cela, enregistrement dans un fichier texte "reportage.conf" dans le répertoire du reportage ?
+
+ - homogénéiser les nommage des modales "Répertoire" et "Création d'un nouvel article"
+	==> NB : si les 2 ce nomment ensuite "Création de ...", il faudra prévoir la modification de ce libellé dans le cas de l'édition (modif's des métat-données)
+
+ - Les messages d'erreur de saisie doivent être idéalement placés au niveaux des champs les ayant causés (ou  au moins soit en haut soit en bas de la partie considérée (pas au milieu) avec un rappel du genre astérisques rouges sur les libellés des champs erronées)
+	===> exemple KO : "Nom d'article obligatoire" à la saisie d'un nouvel article.
+
+ - changer les libellés des niveaux de diffusion (actuellement : Public / Ordinaire / Confidentiel)
+	===> ATTENDRE les libellés donnés par ATD (je viens de leur poser la question.)
+
+ - [idée à creuser] au survol du nom d'un répertoire ou article, afficher une div listant ses méta-données 
+	==> lecture de la sous-partie de l'objet JSON et affichage dynamique par une fonction JS/jQuery
+	OU
+	==> ajout dans le code HTML de ces div (masquée) au fur et à mesure de la création de l'arbo, et simplement son affichage au survol du nom via jQuery
+
+Partie "Fichier Upload"
+-----------------------
+ - Ne plus afficher "Drop files to upload (or click)" (OU l'internationaliser OU le metre en dur dans la langue du form... pour l'instant v. en FR)
+ - retirer le code inutile qui ajoute le texte "Glissez vos fichiers"(ne s'affichant pas)... s'il ne sert à rien
+ - Si c'est possible : 
+	==> Ouvrir l'explorateur de fichiers sur le répertoire du reportage (celui où préalablement ont été mis tous les documents à joindre)
+	==> Interdire si possible la navigation sur le disque (pour qu'on ne puisse mettre dans l'arbo' que des documents déjà placés dans le dossier du reportage)
+
+
+Code source :
+=============
+
+===> index.html
+ - ajout de l'attribut lang  : 
+	==> <html lang="fr">
+	===> valeur à internationaliser (modifier la valeur de cet attribut en jQuery, en fonction de la langue choisie <select>)
+
+Error: Le type de contenu du document n'est pas du HTML : undefined
+
+Result: 22 erreurs / 0 avertissements
+
+Info: W3c Online Validation
+
+line 26 column 77 - Info: The “navigation” role is unnecessary for element “nav”.
+line 66 column 101 - Info: The “navigation” role is unnecessary for element “nav”.
+line 92 column 65 - Erreur: Bad value “nouveau reportage h2” for attribute “id” on element “span”: An ID must not contain whitespace.
+line 105 column 82 - Erreur: Bad value “descr reportage titre fen” for attribute “id” on element “span”: An ID must not contain whitespace.
+line 105 column 160 - Erreur: Bad value “enum 3 langues” for attribute “id” on element “span”: An ID must not contain whitespace.
+line 117 column 132 - Erreur: End tag “label” seen, but there were open elements.
+line 117 column 111 - Erreur: Unclosed element “span”.
+line 119 column 62 - Erreur: Element “option” without attribute “label” must not be empty.
+line 140 column 109 - Erreur: Bad value “fr general” for attribute “id” on element “span”: An ID must not contain whitespace.
+line 143 column 109 - Erreur: Bad value “en general” for attribute “id” on element “span”: An ID must not contain whitespace.
+line 146 column 109 - Erreur: Bad value “es general” for attribute “id” on element “span”: An ID must not contain whitespace.
+line 199 column 80 - Erreur: Bad value “fichier attache” for attribute “id” on element “span”: An ID must not contain whitespace.
+line 224 column 91 - Erreur: Bad value “descr structure titre fen2” for attribute “id” on element “span”: An ID must not contain whitespace.
+line 224 column 187 - Erreur: Bad value “descr structure titre fen compl2” for attribute “id” on element “span”: An ID must not contain whitespace.
+line 236 column 58 - Erreur: Element “div” not allowed as child of element “ul” in this context. (Suppressing further errors from this subtree.)
+line 242 column 57 - Erreur: Element “i” not allowed as child of element “ul” in this context. (Suppressing further errors from this subtree.)
+line 242 column 68 - Erreur: Text not allowed in element “ul” in this context.
+line 242 column 74 - Erreur: Text not allowed in element “ul” in this context.
+line 242 column 80 - Erreur: Text not allowed in element “ul” in this context.
+line 242 column 86 - Erreur: Text not allowed in element “ul” in this context.
+line 392 column 47 - Erreur: The “align” attribute on the “table” element is obsolete. Use CSS instead.
+line 399 column 98 - Erreur: Bad value “textarea” for attribute “type” on element “input”.
+line 460 column 7 - Erreur: End tag for  “body” seen, but there were unclosed elements.
+line 24 column 26 - Erreur: Unclosed element “div”.
+
+===> my.js
+-----------------------
+ - à renommer par rapport au nom du projet ("reporter.js" par exemple)
+ - indentation à refaire et à homogénéiser (je t'ai envyer une version l'autre jour où c'était en grande partie fait) et à garder propre une fois fait
+
+
+Corrections / tests précédents ( / V. 2017-02-22)
+=================================================
+Partie "Description de reportage Français | Anglais | Espagnol"
+---------------------------------------------------------------
+ - A la [Validation] En cas d'erreur de saisie le message "Il vous manque un champ *" demeure même une fois que tout est saisi.
+
+ - champs "Commanditaire" (choix), "Reporter", et "Période" obligatoires ? (à confirmer par le client)
+  ==> si oui, contrôle à la validation
+  
+ - NB : Pour la "Période" OK client pour de date à date (au lieu d'années seules)
+ 
+ 
+Partie "Fichier Upload"
+-----------------------
+- Après avoir ajouter des documents (photos dans mon cas) dans la partie "Fichier upload", un clic sur l'icône de "suppression de sélection" d'un des document m'affiche l'alerte de confirmation erronée :
+"Attention ! cet élément peut contenit d'autres éléments , êtes-vous sûr ?"
+  ==> message à réserver au dossier (répertoire)
+  ==> orthographe  : "contenir"
+
+- Partie "Description de structure Structuration du paquet"
+-----------------------------------------------------------
+  - 1 clic droit (menu contextuel = "MC" par la suite) sur la racine m'ouvre un MC en français ("Nvs repertoire" / "Nvx Article"), mais un clic droit sur un sous-répertoire m'affiche un MC en anglais ("New folder" / "New article" / "Remove folder")
+    ==> MC en fonction de la langue d'IHM choisi (==> à internationaliser)
+    ==> Le MC sur la racine à une police sans serif (à privilégier), ceux ensuite une police avec serif. 
+      ==> Pb de style à appliquer à l'identique
+    ==> Attention à respecter la casse (Toujours une majuscule au début, le reste en minuscule)
+    
+  - ajout d'un nouvel article, apparait une modale "Création d'un nouveau Article" 
+    ==> Mettre "Création d'un nouvel article"
+    ==> 2 boutons en bas , un en EN ("Close"), l'autre en FR ("Valider") (==> à internationaliser)
+    
+  - Utilisation du terme "article" : pas sûr que le client y soit famillier (laisser comme ça, à voir avec eux)
+  
+  - sur un article (contrairement à sur un dossier intermédiaire), on voit des icônes (1 par action possible) au lieu d'un MC 
+    ==> Mettre un MC
+    
+  - reprendre les mêmes icônes (ou dérivés) dans le MC que dans l'arborescence 
+  
+  - ajouter dans le MC "Editer" (pour renommer et changer descriptions  et autres champs du dossier ou article)
+    ==> rappel de la modale avec les éléments précédemment saisies
+
+  
+Partie "All form elements With custom checbox and radion elements"
+------------------------------------------------------------------
+ - titre en EN (pour une IHM en FR à priori)
+ - titre avec fautes d'orthographe
+
+ - pour cette partie, on ne peut pas choisir de répertoire... Cela suppose que les fichier sont déjà dans le répertoire du script ?
+
+ 
+Code source :
+=============
+"my.js" : indentation et présentation du code à revoir 
+  ==> une première passe faite (FDr 20fev2017)
+  

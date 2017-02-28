@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Reporter | Nouveau reportage Form</title>
+
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+<link href="css/plugins/iCheck/custom.css" rel="stylesheet">
+<link href="css/animate.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+
+<link href="css/plugins/datapicker/datepicker3.css" rel="stylesheet">
+<link href="css/plugins/jsTree/style.min.css" rel="stylesheet">
+<link href="css/plugins/dropzone/basic.css" rel="stylesheet">
+<link href="css/plugins/dropzone/dropzone.css" rel="stylesheet">
+</head>
+
+<body>
+<div id="b">
+
+    <div id="wrapper">
+
+        <nav class="navbar-default navbar-static-side" ><!-- role="navigation"> -->
+            <div class="sidebar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li class="nav-header">
+                        <div class="dropdown profile-element"> <span>
+                            <img alt="image" class="img-circle" src="img/profile_small.jpg" />
+                        </span>
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">Reporter name</strong>
+                            </span> <span class="text-muted text-xs block">Post <b class="caret"></b></span> </span>
+                            </a>
+                            <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                                <li><a href="profile.html">Profile</a></li>
+                                <li><a href="contacts.html">Contacts</a></li>
+                                <li><a href="mailbox.html">Mailbox</a></li>
+                                <li class="divider"></li>
+                                <li><a href="login.html">Logout</a></li>
+                            </ul>
+                        </div>
+                        <div class="logo-element">
+                            ATD
+                        </div>
+                    </li>
+                    <li>
+                        <a href="index-2.html"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span> <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="index-2.html">Dashboard v.1</a></li>
+                            <li><a href="dashboard_2.html">Dashboard v.2</a></li>
+                            <li><a href="dashboard_3.html">Dashboard v.3</a></li>
+                            <li><a href="dashboard_4_1.html">Dashboard v.4</a></li>
+                        </ul>
+                    </li>
+
+
+                </ul>
+
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="gray-bg">
+            <div class="row border-bottom">
+                <nav class="navbar navbar-static-top"  style="margin-bottom: 0"> <!-- role="navigation" -->
+                    <div class="navbar-header">
+                        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+                    </div>
+                    <ul class="nav navbar-top-links navbar-right">
+                        <li>
+                            <!-- <img src="en.png" style="width:128px;height:128px;"> -->
+                            <div style="margin-left: 20px; margin-bottom: 20px;" id="langBox">
+
+                                <span class="i18n" id="langue">Langue :</span>
+                                <select id="lang">
+                              <!-- option value="browser" selected>Browser Default</option -->
+                              <option value="fr" selected>fr</option>
+                              <option value="en">en</option>
+                              <!-- <option value="de_NON_GERE">de_NON_GERE</option> -->
+                              <option value="es">es</option>
+
+                          </select>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+            </div>
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2><span class="i18n" id="nouveau_reportage_h2">Nouveau Reportage</span></h2>
+                </div>
+                <div class="col-lg-2">
+
+                </div>
+            </div>
+
+            <div class="wrapper wrapper-content animated fadeInRight">
+
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5><span class="i18n" id="descr_reportage_titre_fen">Description de reportage</span></h5>
+                                <div class="ibox-tools">
+                                    <a class="collapse-link" id="clickdesc">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <div class="row">
+                                    <form class="form-horizontal" id="date1">
+
+                                        <label class="col-sm-3 control-label"><span class="i18n" id="projet">Nom du projet</span></label>
+                                        <div class="col-sm-9"><input type="text" class="form-control" id="nomprojet" required></div>
+
+                                        <label class="col-sm-3 control-label"><span class="i18n" id="commanditaire">Commanditaire</span></label>
+                                        <div class="col-sm-9"> <select class="form-control" id="commanditaire1" required>
+                                <option value="">-</option>
+                                <option value="peps">PEPS</option>
+                                <option value="mobicom">MOBICOM</option>
+                                <option value="atd">ATD</option>
+                            </select> </div>
+
+
+                                        <!-- <label class="col-sm-3 control-label"><span class="i18n" id="reporteur1">Reporteur *</span></label>
+                            <div class="col-sm-9"> <input type="text" id="reporter" class="form-control" required></div> -->
+
+
+                                        <label class="col-sm-3 control-label"><span class="i18n" id="periode1">Période *</span></label>
+
+                                        <div class="col-sm-9">
+                                            <div class="input-daterange input-group" id="datepicker">
+                                                <input type="text" class="input-sm form-control" id="start" value="" onkeydown="return false"  required/>
+                                                <span class="input-group-addon"><span class="i18n" id="a">à</span></span>
+                                                <input type="text" class="input-sm form-control" id="end" value="" onkeydown="return false"  required/>
+                                            </div>
+                                        </div>
+
+
+                                        <label class="col-sm-3 control-label"><span class="i18n" id="fr_general">Description</span></label>
+                                        <div class="col-sm-9"><input type="text" class="form-control" id="descgen" required></div>
+
+                                        <div>&nbsp;<span class="i18n" id="errordesc" style="color:red;font-weight:bold;display:none">Champ manquant * </span></div>
+                                        <div class="col-sm-8"> <button type="button" onclick='descriptiongenerale()' class="btn btn-w-m btn-primary pull-right"><span class="i18n" id="valider">Valider</span></button></div>
+
+                                        <!-- <a data-toggle="modal" id="callmodal" data-target="#nvxrep" style="visibility: hidden"><i class="fa fa-plus"></i></a>
+                                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a> -->
+
+
+
+                                        <!-- <input type="submit" > -->
+                                    </form>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-4">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5><span class="1i18n" id="state_form">Etat du formulaire</span> </h5>
+                                <div class="ibox-tools">
+                                    <a class="collapse-link">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+
+                                <button><span class="1i18n" id="sauvegarder">Sauvegarder</span></button>
+                                <button><span class="1i18n" id="charger">Recharger</span></button>
+                                <button onclick="rmhistorique();"><span class="1i18n" id="viderform">Suppprimer</span></button>
+                                <br>
+
+                                <select id="historique" >
+                                    <option value="" label="-">
+                                </select>
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+
+
+
+
+                <div class="row">
+                    <div class="wrapper wrapper-content animated fadeIn">
+                        <div class="row">
+                            <div class="col-lg-7">
+                                <div class="ibox float-e-margins">
+                                    <div class="ibox-title">
+                                        <h5><span class="i18n" id="fichier_attache">Fichiers à attacher</span> </h5>
+                                        <div class="ibox-tools">
+                                            <a class="collapse-link">
+                                                <i class="fa fa-chevron-up"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="ibox-content">
+                                        <form id="my-awesome-dropzone" class="dropzone" action="#">
+                                            <div class="dropzone-previews"></div>
+
+                                            <div class="dz-message" data-dz-message><span class="i18n" id="droplabel">Ajouter vos fichiers</span></div>
+
+                                            <button type="button" onclick='$("#fichiers").empty()' class="btn btn-w-m btn-primary pull-right">
+                                            <span class="i18n" id="vider">Vider</span></button>
+
+
+                                            <div id="fichiers"> </div>
+
+                                        </form>
+                                        <div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-5">
+                                <div class="ibox float-e-margins">
+                                    <div class="ibox-title">
+                                        <h5><span class="i18n" id="descr_structure_titre_fen2">Description de structure</span> <small><span class="i18n" id="descr_structure_titre_fen_compl2">Structuration du paquet</span></small></h5>
+                                        <div class="ibox-tools">
+                                            <a class="collapse-link">
+                                                <i class="fa fa-chevron-up"></i>
+                                            </a>
+
+                                        </div>
+                                    </div>
+                                    <div class="ibox-content" id="d">
+                                            <!-- <a onclick="rmhistorique()">test</a> -->
+                                        <div align="right"><a class='fa fa-minus-square' onclick="hideall()"> Hide all</a>
+                                            <a class='fa fa-plus-square' onclick="showall()">show all</a></div>
+                                        <ul id="1">
+                                            <!-- style="display:none">  -->
+                                            <span id="home" class='gras' onclick="hideshow(1,this)"><i id="ico1"  ></i>Projet</span>&nbsp;&nbsp;&nbsp;
+                                            <div class='dropdown'><a class='dropbtn'>&nbsp;&nbsp;&nbsp;<i class='fa fa-align-justify'></i>&nbsp;&nbsp;&nbsp;</a>
+                                                <div class='dropdown-content'>
+                                                    <a onclick=""><i class="fa fa-edit">&nbsp; Éditer</i> </a>
+                                                    <a id="2" onclick="addfolder(1,1)"><i class="fa fa-folder-o">&nbsp; Nouveau répertoire</i></a>
+                                                    <a onclick="addfolder(3,1)"><i class="fa fa-folder">&nbsp; Nouvel article</i> </a>
+
+                                                </div>
+                                            </div>
+                                            <div id="child1" class='dev'></div>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+
+
+
+
+
+                    <div class="modal inmodal fade" id="nvxrep" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog modal-sm">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Fermer</span></button>
+                                    <h4 class="modal-title">Nouveau Répertoire</h4>
+                                </div>
+
+                                <div class="modal-body">
+                                    <form>
+                                        <table>
+                                            <tr>
+                                                <td> Nom : </td>
+                                                <td> <input type=text id="rep1"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Description :</td>
+                                                <td> <input type=text id="desc1"></td>
+                                            </tr>
+                                        </table>
+                                    </form>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" id="okmodal1" class="btn btn-primary" data-dismiss="modal">Valider</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a data-toggle="modal" id="callmodal" data-target="#nvxrep" style="visibility: hidden"><i class="fa fa-plus"></i></a>
+
+
+
+                    <div class="modal inmodal" id="nvxter" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content animated flipInY">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Fermer</span></button>
+                                    <h4 class="modal-title">Nouvel article</h4>
+                                    <small class="font-bold">Un article ne peut contenir que des objets.</small>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <table align=center>
+                                            <tr>
+                                                <td> Nom : </td>
+                                                <td> <input type=text id="trep1"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Communicabilité : &nbsp;</td>
+                                                <td>
+                                                    <input type="radio" name="diffusion" value="option1" checked> Public&nbsp;
+                                                    <input type="radio" name="diffusion" value="option2"> Accessible sur simple&nbsp;
+                                                    <input type="radio" name="diffusion" value="option3"> Accessible sous condition
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                </TD>
+                                                <td>
+                                                    <div class="checkbox i-checks"><label> <input type="checkbox" id="remarquable"> <i>Remarquable ! </i> </label></div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><i>Personnes</i> : </td>
+                                                <td> <input type=textarea id="person"></td>
+                                            </tr>
+                                            <tr>
+                                                <td><i>Description</i> : </td>
+                                                <td> <input type=text id="descter"></td>
+                                            </tr>
+                                            <tr>
+                                                <td><b></b></td>
+                                                <td><span class="i18n" id="errorter" style="color:red;font-weight:bold;display:none">Champt manquant *</span></td>
+                                            </tr>
+                                        </table>
+
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-white" onclick="viderModal()" data-dismiss="modal">Fermer</button>
+                                    <button type="button" style="display:none;" id="okmodal2" data-dismiss="modal"></button>
+                                    <button type="button" onclick="validArticle()" class="btn btn-primary">Valider</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a data-toggle="modal" id="callnvxter" data-target="#nvxter" style="visibility: hidden"><i class="fa fa-plus"></i></a>
+
+
+
+
+                </div>
+                <div class="footer">
+                    <div class="pull-right">
+                        Page 1 of <strong>1</strong> Pages.
+                    </div>
+                    <div>
+                        <strong>ATD</strong> Reporter &copy; V1
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <p id="v1"></p>
+        <p id="v2"></p>
+        <script src="js/jquery-2.1.1.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+        <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+        <script src="js/plugins/datapicker/bootstrap-datepicker.js"></script>
+        <script src="js/plugins/jsTree/jstree.min.js"></script>
+        <!-- DROPZONE -->
+        <script src="js/plugins/dropzone/dropzone.js"></script>
+        <!-- Custom and plugin javascript -->
+        <script src="js/inspinia.js"></script>
+        <script src="js/reporter.js"></script>
+        <script src="js/plugins/pace/pace.min.js"></script>
+        <script src="js/FDr.i18n/translate.js"></script>
+        <script src="js/FDr.i18n/lang/properties_fr.js"></script>
+        <script src="js/FDr.i18n/lang/properties_en.js"></script>
+        <script src="js/FDr.i18n/lang/properties_es.js"></script>
+
+        <!-- iCheck -->
+        <script src="js/plugins/iCheck/icheck.min.js"></script>
+
+
+    </div id="b">
+</body>
+
+
+<!-- Mirrored from webapplayers.com/inspinia_admin-v2.1/form_basic.html by HTTrack Website Copier/3.x [XR&CO'2013], Sun, 31 May 2015 10:01:43 GMT -->
+
+</html>

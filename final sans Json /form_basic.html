@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html>
+
+
+<!-- Mirrored from webapplayers.com/inspinia_admin-v2.1/form_basic.html by HTTrack Website Copier/3.x [XR&CO'2013], Sun, 31 May 2015 10:01:43 GMT -->
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Reporter | Nouveau reportage Form</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <link href="css/plugins/datapicker/datepicker3.css" rel="stylesheet">
+    <link href="css/plugins/jsTree/style.min.css" rel="stylesheet">
+    <link href="css/plugins/dropzone/basic.css" rel="stylesheet">
+    <link href="css/plugins/dropzone/dropzone.css" rel="stylesheet">
+
+
+
+
+
+
+</head>
+
+<body>
+    <script type="text/javascript">
+function showd() {
+    alert("F");
+    $("#nvxrep").dialog("open");
+    //alert("Time to renew Membership!");
+}
+
+$(document).ready(function() {
+    $("#nvxrep").dialog({
+        autoOpen: false,
+        modal: true,
+        buttons: { "Renew Membership": function() { $(this).dialog("close"); } }
+    });
+});
+</script>
+
+</script>
+
+<a onclick="showd()">dddfff</a>
+
+
+                            <div class="modal inmodal fade" id="nvxrep" tabindex="-1" role="dialog"  aria-hidden="true">
+                                <div class="modal-dialog modal-sm">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                            <h4 class="modal-title">Nouveau Repertoire</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                         <table><tr><td> Nom : </td><td> <input type=text name="rep" id="rep"></td></tr>
+                                          <tr><td>Description :</td><td> <input type=text id="desc"></td></tr>
+                                        </table>
+
+                                        </div>
+                                        <div class="modal-footer">                                 
+                                            <button type="button"  id="okmodal" class="btn btn-primary"  data-dismiss="modal">Valider</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+    <div id="wrapper">
+
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element"> <span>
+                            <img alt="image" class="img-circle" src="img/profile_small.jpg" />
+                             </span>
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">Reporter name</strong>
+                             </span> <span class="text-muted text-xs block">Post <b class="caret"></b></span> </span> </a>
+                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                            <li><a href="profile.html">Profile</a></li>
+                            <li><a href="contacts.html">Contacts</a></li>
+                            <li><a href="mailbox.html">Mailbox</a></li>
+                            <li class="divider"></li>
+                            <li><a href="login.html">Logout</a></li>
+                        </ul>
+                    </div>
+                    <div class="logo-element">
+                        ATD
+                    </div>
+                </li>
+                <li>
+                    <a href="index-2.html"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span> <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li ><a href="index-2.html">Dashboard v.1</a></li>
+                        <li ><a href="dashboard_2.html">Dashboard v.2</a></li>
+                        <li ><a href="dashboard_3.html">Dashboard v.3</a></li>
+                        <li ><a href="dashboard_4_1.html">Dashboard v.4</a></li>
+                    </ul>
+                </li>
+                          
+        
+            </ul>
+
+        </div>
+    </nav>
+
+        <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+        <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+            <form role="search" class="navbar-form-custom" action="http://webapplayers.com/inspinia_admin-v2.1/search_results.html">
+                <div class="form-group">
+                    <input type="text" placeholder="Rechercher..." class="form-control" name="top-search" id="top-search">
+                </div>
+            </form>
+        </div>
+            <ul class="nav navbar-top-links navbar-right">
+                <li>
+                    <span class="m-r-sm text-muted welcome-message">Formulaire Reporter</span>
+                </li> 
+                <li>
+                    <a href="login.html">
+                        <i class="fa fa-sign-out"></i> Log out
+                    </a>
+                </li>
+            </ul>
+
+        </nav>
+        </div>
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2>Nouveau Reportage</h2> 
+                </div>
+                <div class="col-lg-2">
+
+                </div>
+            </div>
+
+        <div class="wrapper wrapper-content animated fadeInRight">
+    
+         <div class="row">
+            <div class="col-lg-6">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Description de reportage <small>Français | Anglais | Espagnol</small></h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                                <li><a href="#">Config option 1</a>
+                                </li>
+                                <li><a href="#">Config option 2</a>
+                                </li>
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row">
+                            <form method="get" class="form-horizontal" id="data_5">
+
+                                <div class="form-group">
+
+                                    <label class="col-sm-3 control-label">Commanditaire</label>
+                                    <div class="col-sm-9"> <select class="form-control" name="account">
+                                            <option>PEPS</option>
+                                            <option>MOBICOM</option>
+                                            <option>ATD</option>
+                                        </select>
+                                    </div>
+                                    <label class="col-sm-3 control-label">Reporter</label>
+                                    <div class="col-sm-9"><select class="form-control" name="account">
+                                            <option>Reporter 1</option>
+                                            <option>Reporter 2</option>
+                                        </select>
+                                    </div>
+
+                           
+                                <label class="col-sm-3 control-label">Periode</label>
+                                
+                                <div class="col-sm-9">
+                                <div class="input-daterange input-group" id="datepicker">
+                                    <input type="text" class="input-sm form-control" name="start" value="05/14/2014"/>
+                                    <span class="input-group-addon">to</span>
+                                    <input type="text" class="input-sm form-control" name="end" value="05/22/2014" />
+                                </div></div>
+
+                                     
+                                    <div class="col-sm-12"><div class="hr-line-dashed"></div><label class="font-noraml">Descriptin Générale : </label></div>
+                                    <label class="col-sm-2 control-label">Français</label>
+                                    <div class="col-sm-10"><input type="text" class="form-control"></div>
+
+                                    <label class="col-sm-2 control-label">Anglais</label>
+                                    <div class="col-sm-10"><input type="text" class="form-control"></div>
+
+                                    <label class="col-sm-2 control-label">Espagnol</label>
+                                    <div class="col-sm-10"><input type="text" class="form-control"></div>
+
+                                </div>
+                                     <a class="collapse-link">
+                                     <button  type="button" class="btn btn-w-m btn-primary pull-right">Valider</button>
+                                     </a>
+                            </form>
+                            
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Description de structure <small>Structuration du paquet</small></h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <div id="jstree1">
+                        <ul>
+                            <li id="tre" class="jstree-open">Reportage
+                                <ul >
+                                    <li> </li>
+                                    <li class="jstree-open">Intermédiaire 1
+                                        <ul>
+                                            <li>autre niveau ?
+                                               <ul> <li data-jstree='{"type":"img"}'>photo.jpg</li> </ul>
+                                            </li>
+                                            <li data-jstree='{"type":"html"}'>fichier.html</li>
+                                            <li data-jstree='{"type":"css"}'>fichier.css</li>
+                                            <li data-jstree='{"type":"svg"}'>present.svg</li>
+                                        </ul>
+                                    </li>
+                                    <li class="jstree-open">Intermédiaire 2
+                                        <ul>
+                                            <li data-jstree='{"type":"img"}'>photo.jpg</li>
+                                            <li data-jstree='{"type":"html"}'>fichier.html</li>
+                                            <li data-jstree='{"type":"js"}'>javascript.js</li>
+                                        </ul>
+                                    </li>
+                                    
+                                  
+                                </ul>
+                            </li>
+                        </ul>
+
+                    </div>
+                     <a href="#" id="d"><i class="fa fa-plus"></i></a>
+                     <a href="#"><i class="fa fa-minus"></i></a>
+                </div>
+            </div>
+        </div>
+
+
+
+                
+        </div>
+
+         
+
+
+       <div class="row">
+        <div class="wrapper wrapper-content animated fadeIn">
+            <div class="row">
+                <div class="col-lg-7">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Fichier Upload</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                                <li><a href="#">Config option 1</a>
+                                </li>
+                                <li><a href="#">Config option 2</a>
+                                </li>
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <form id="my-awesome-dropzone" class="dropzone" action="#">
+                            <div class="dropzone-previews"></div>
+                             <a class="collapse-link">
+                                     <button  type="button" class="btn btn-w-m btn-primary pull-right">Valider</button>
+                                     </a>
+                        </form>
+                        <div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+
+                <div class="col-lg-5">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Description de structure <small>Structuration du paquet</small></h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                  <a data-toggle="modal" id="callmodal" data-target="#nvxrep" style="visibility: hidden"><i class="fa fa-plus"></i></a>
+                <div class="ibox-content">
+
+                    
+                       
+                          
+
+                            <ul id="racine"  onclick="addfolder(1,'racine')">Reportage  <i class="fa fa-plus"></i></ul>
+
+                    
+                     <a href="#" id="bt"><i class="fa fa-plus"></i></a>
+                     <a href="#"><i class="fa fa-minus"></i></a>
+                </div>
+            </div>
+        </div>
+
+        </div>
+
+
+
+    </div>
+                   
+
+
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>All form elements <small>With custom checbox and radion elements.</small></h5>
+                            <div class="ibox-tools">
+                                <a class="collapse-link">
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                    <i class="fa fa-wrench"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-user">
+                                    <li><a href="#">Config option 1</a>
+                                    </li>
+                                    <li><a href="#">Config option 2</a>
+                                    </li>
+                                </ul>
+                                <a class="close-link">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div id=
+                        <div class="ibox-content">
+                            <form method="get" class="form-horizontal">
+
+                                <div class="form-group"><label class="col-sm-2 control-label">Photo : </label>
+
+                                    <div class="col-sm-10">
+                                        <div class="row">
+                                              
+                               
+
+
+                                            <div >de <input type="number" min="0" max="500" > à 
+                                            <input type="number" min="0" max="500">
+                                            Nom fichier : <input type="text"> Diffusion : 
+                                            <input type="checkbox" value="option1" > a 
+                                            <input type="checkbox" value="option2" > b 
+                                            <input type="checkbox" value="option3" > c 
+                                            </div>
+                                        
+                                        </div>
+                                    </div>
+                                </div>
+
+                                  <div class="form-group"><label class="col-sm-2 control-label">Video : </label>
+
+                                    <div class="col-sm-10">
+                                        <div class="row">
+                                            <div >de <input type="number" min="0" max="500" > à 
+                                            <input type="number" min="0" max="500">
+                                            Nom fichier : <input type="text"> Diffusion : 
+                                            <input type="checkbox" value="option1" > a 
+                                            <input type="checkbox" value="option2" > b 
+                                            <input type="checkbox" value="option3" > c 
+                                            </div>
+                                        
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                  <div class="form-group"><label class="col-sm-2 control-label">Montage : </label>
+
+                                    <div class="col-sm-10">
+                                        <div class="row">
+                                            
+                                               Nom video <input type="text" >
+                                                Source <select >
+                                            <option>liste</option>
+                                            <option>des</option>
+                                            <option>videos</option>
+                                                </select>
+
+
+                                   <br>
+                                               
+                                                
+                                                   <div class="col-sm-10">  Sequence : <input  size="10" type="range" name="seq" id="ageInputId" value="0" min="0" max="120" oninput="ageOutputId.value = ageInputId.value"> </div>
+                                                    <output name="ageOutputName" id="ageOutputId"></output>min
+
+
+                                                   
+
+
+
+                                                
+                                            </div>
+                                        
+                                        </div>
+                                    </div>
+                            
+
+<br><br><br><br><br><br>
+
+
+
+
+
+                                <div class="form-group"><label class="col-sm-2 control-label">Normal</label>
+
+                                    <div class="col-sm-10"><input type="text" class="form-control"></div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group"><label class="col-sm-2 control-label">Help text</label>
+                                    <div class="col-sm-10"><input type="text" class="form-control"> <span class="help-block m-b-none">A block of help text that breaks onto a new line and may extend beyond one line.</span>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group"><label class="col-sm-2 control-label">Password</label>
+
+                                    <div class="col-sm-10"><input type="password" class="form-control" name="password"></div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group"><label class="col-sm-2 control-label">Placeholder</label>
+
+                                    <div class="col-sm-10"><input type="text" placeholder="placeholder" class="form-control"></div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group"><label class="col-lg-2 control-label">Disabled</label>
+
+                                    <div class="col-lg-10"><input type="text" disabled="" placeholder="Disabled input here..." class="form-control"></div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group"><label class="col-lg-2 control-label">Static control</label>
+
+                                    <div class="col-lg-10"><p class="form-control-static">email@example.com</p></div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group"><label class="col-sm-2 control-label">Checkboxes and radios <br/>
+                                    <small class="text-navy">Normal Bootstrap elements</small></label>
+
+                                    <div class="col-sm-10">
+                                        <div class="checkbox"><label> <input type="checkbox" value=""> Option one is this and that&mdash;be sure to include why it's great </label></div>
+                                        <div class="radio"><label> <input type="radio" checked="" value="option1" id="optionsRadios1" name="optionsRadios"> Option one is this and that&mdash;be sure to
+                                            include why it's great </label></div>
+                                        <div class="radio"><label> <input type="radio" value="option2" id="optionsRadios2" name="optionsRadios"> Option two can be something else and selecting it will
+                                            deselect option one </label></div>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group"><label class="col-sm-2 control-label">Inline checkboxes</label>
+
+                                    <div class="col-sm-10"><label class="checkbox-inline"> <input type="checkbox" value="option1" id="inlineCheckbox1"> a </label> <label class="checkbox-inline">
+                                        <input type="checkbox" value="option2" id="inlineCheckbox2"> b </label> <label class="checkbox-inline">
+                                        <input type="checkbox" value="option3" id="inlineCheckbox3"> c </label></div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group"><label class="col-sm-2 control-label">Checkboxes &amp; radios <br/><small class="text-navy">Custom elements</small></label>
+
+                                    <div class="col-sm-10">
+                                        <div class="checkbox i-checks"><label> <input type="checkbox" value=""> <i></i> Option one </label></div>
+                                        <div class="checkbox i-checks"><label> <input type="checkbox" value="" checked=""> <i></i> Option two checked </label></div>
+                                        <div class="checkbox i-checks"><label> <input type="checkbox" value="" disabled="" checked=""> <i></i> Option three checked and disabled </label></div>
+                                        <div class="checkbox i-checks"><label> <input type="checkbox" value="" disabled=""> <i></i> Option four disabled </label></div>
+                                        <div class="radio i-checks"><label> <input type="radio" value="option1" name="a"> <i></i> Option one </label></div>
+                                        <div class="radio i-checks"><label> <input type="radio" checked="" value="option2" name="a"> <i></i> Option two checked </label></div>
+                                        <div class="radio i-checks"><label> <input type="radio" disabled="" checked="" value="option2"> <i></i> Option three checked and disabled </label></div>
+                                        <div class="radio i-checks"><label> <input type="radio" disabled="" name="a"> <i></i> Option four disabled </label></div>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group"><label class="col-sm-2 control-label">Inline checkboxes</label>
+
+                                    <div class="col-sm-10"><label class="checkbox-inline i-checks"> <input type="checkbox" value="option1">a </label>
+                                        <label class="checkbox-inline i-checks"> <input type="checkbox" value="option2"> b </label>
+                                        <label class="checkbox-inline i-checks"> <input type="checkbox" value="option3"> c </label></div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group"><label class="col-sm-2 control-label">Select</label>
+
+                                    <div class="col-sm-10"><select class="form-control m-b" name="account">
+                                        <option>option 1</option>
+                                        <option>option 2</option>
+                                        <option>option 3</option>
+                                        <option>option 4</option>
+                                    </select>
+
+                                        <div class="col-lg-4 m-l-n"><select class="form-control" multiple="">
+                                            <option>option 1</option>
+                                            <option>option 2</option>
+                                            <option>option 3</option>
+                                            <option>option 4</option>
+                                        </select></div>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group has-success"><label class="col-sm-2 control-label">Input with success</label>
+
+                                    <div class="col-sm-10"><input type="text" class="form-control"></div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group has-warning"><label class="col-sm-2 control-label">Input with warning</label>
+
+                                    <div class="col-sm-10"><input type="text" class="form-control"></div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group has-error"><label class="col-sm-2 control-label">Input with error</label>
+
+                                    <div class="col-sm-10"><input type="text" class="form-control"></div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group"><label class="col-sm-2 control-label">Control sizing</label>
+
+                                    <div class="col-sm-10"><input type="text" placeholder=".input-lg" class="form-control input-lg m-b">
+                                        <input type="text" placeholder="Default input" class="form-control m-b"> <input type="text" placeholder=".input-sm" class="form-control input-sm">
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group"><label class="col-sm-2 control-label">Column sizing</label>
+
+                                    <div class="col-sm-10">
+                                        <div class="row">
+                                            <div class="col-md-2"><input type="text" placeholder=".col-md-2" class="form-control"></div>
+                                            <div class="col-md-3"><input type="text" placeholder=".col-md-3" class="form-control"></div>
+                                            <div class="col-md-4"><input type="text" placeholder=".col-md-4" class="form-control"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group"><label class="col-sm-2 control-label">Input groups</label>
+
+                                    <div class="col-sm-10">
+                                        <div class="input-group m-b"><span class="input-group-addon">@</span> <input type="text" placeholder="Username" class="form-control"></div>
+                                        <div class="input-group m-b"><input type="text" class="form-control"> <span class="input-group-addon">.00</span></div>
+                                        <div class="input-group m-b"><span class="input-group-addon">$</span> <input type="text" class="form-control"> <span class="input-group-addon">.00</span></div>
+                                        <div class="input-group m-b"><span class="input-group-addon"> <input type="checkbox"> </span> <input type="text" class="form-control"></div>
+                                        <div class="input-group"><span class="input-group-addon"> <input type="radio"> </span> <input type="text" class="form-control"></div>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group"><label class="col-sm-2 control-label">Button addons</label>
+
+                                    <div class="col-sm-10">
+                                        <div class="input-group m-b"><span class="input-group-btn">
+                                            <button type="button" class="btn btn-primary">Go!</button> </span> <input type="text" class="form-control">
+                                        </div>
+                                        <div class="input-group"><input type="text" class="form-control"> <span class="input-group-btn"> <button type="button" class="btn btn-primary">Go!
+                                        </button> </span></div>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group"><label class="col-sm-2 control-label">With dropdowns</label>
+
+                                    <div class="col-sm-10">
+                                        <div class="input-group m-b">
+                                            <div class="input-group-btn">
+                                                <button data-toggle="dropdown" class="btn btn-white dropdown-toggle" type="button">Action <span class="caret"></span></button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="#">Action</a></li>
+                                                    <li><a href="#">Another action</a></li>
+                                                    <li><a href="#">Something else here</a></li>
+                                                    <li class="divider"></li>
+                                                    <li><a href="#">Separated link</a></li>
+                                                </ul>
+                                            </div>
+                                             <input type="text" class="form-control"></div>
+                                        <div class="input-group"><input type="text" class="form-control">
+
+                                            <div class="input-group-btn">
+                                                <button data-toggle="dropdown" class="btn btn-white dropdown-toggle" type="button">Action <span class="caret"></span></button>
+                                                <ul class="dropdown-menu pull-right">
+                                                    <li><a href="#">Action</a></li>
+                                                    <li><a href="#">Another action</a></li>
+                                                    <li><a href="#">Something else here</a></li>
+                                                    <li class="divider"></li>
+                                                    <li><a href="#">Separated link</a></li>
+                                                </ul>
+                                            </div>
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group"><label class="col-sm-2 control-label">Segmented</label>
+
+                                    <div class="col-sm-10">
+                                        <div class="input-group m-b">
+                                            <div class="input-group-btn">
+                                                <button tabindex="-1" class="btn btn-white" type="button">Action</button>
+                                                <button data-toggle="dropdown" class="btn btn-white dropdown-toggle" type="button"><span class="caret"></span></button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="#">Action</a></li>
+                                                    <li><a href="#">Another action</a></li>
+                                                    <li><a href="#">Something else here</a></li>
+                                                    <li class="divider"></li>
+                                                    <li><a href="#">Separated link</a></li>
+                                                </ul>
+                                            </div>
+                                            <input type="text" class="form-control"></div>
+                                        <div class="input-group"><input type="text" class="form-control">
+
+                                            <div class="input-group-btn">
+                                                <button tabindex="-1" class="btn btn-white" type="button">Action</button>
+                                                <button data-toggle="dropdown" class="btn btn-white dropdown-toggle" type="button"><span class="caret"></span></button>
+                                                <ul class="dropdown-menu pull-right">
+                                                    <li><a href="#">Action</a></li>
+                                                    <li><a href="#">Another action</a></li>
+                                                    <li><a href="#">Something else here</a></li>
+                                                    <li class="divider"></li>
+                                                    <li><a href="#">Separated link</a></li>
+                                                </ul>
+                                            </div>
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <div class="col-sm-4 col-sm-offset-2">
+                                        <button class="btn btn-white" type="submit">Cancel</button>
+                                        <button class="btn btn-primary" type="submit">Save changes</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+
+
+
+
+
+
+
+
+
+
+        </div>
+        <div class="footer">
+            <div class="pull-right">
+                Page 1 of <strong>1</strong> Pages.
+            </div>
+            <div>
+                <strong>ATD</strong> Reporter &copy; V1
+            </div>
+        </div>
+
+        </div>
+        </div>
+
+
+
+    <!-- Mainly scripts -->
+    <script src="js/jquery-2.1.1.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+     <script src="js/plugins/datapicker/bootstrap-datepicker.js"></script>
+     <script src="js/plugins/jsTree/jstree.min.js"></script>
+         <!-- DROPZONE -->
+    <script src="js/plugins/dropzone/dropzone.js"></script>
+     <style>
+    .jstree-open > .jstree-anchor > .fa-folder:before {
+        content: "\f07c";
+    }
+
+    .jstree-default .jstree-icon.none {
+        width: 0;
+    }
+</style>
+
+    <!-- Custom and plugin javascript -->
+    <script src="js/inspinia.js"></script>
+    <script src="js/plugins/pace/pace.min.js"></script>
+
+    <!-- iCheck -->
+    <script src="js/plugins/iCheck/icheck.min.js"></script>
+       <script language="javascript>" type="text/javascript"> 
+       
+
+
+    function rmfolder(f){
+        if (confirm('Attention ! ce repertoire peut contenir des sous repertoires, etes-vous sure ?'))
+        $("#"+f).remove();    }
+
+       function addfolder(k,f){
+
+    // document.getElementById("callmodal").click();
+
+
+    
+    // code 2 here
+
+// alert($(event.target)[0].id);
+
+          // var  ide="d";
+
+       var fold = prompt("Entrez le nom du repertoire", "");
+       //var fold = document.getElementById("rep").value; //$("#rep").val();
+      //document.getElementById("rep").value="";
+       // $("#rep").val("");
+      //  if (fold==null || fold=="") return;
+      k++;
+   
+            $("#"+f).append("<ul id="+fold+" onclick=addfolder("+k+","+this.id+")> "+fold+" <i class='fa fa-plus'></i> <a  onclick=\"rmfolder('"+fold+"')\"><i class='fa fa-minus'></i></a></ul>"); 
+
+
+
+    
+        // else if(k===2){  
+        //     $("#"+f).append("<ul id="+fold+">"+fold+" <a  onclick=\"addfolder(3,'"+fold+"')\"><i class='fa fa-plus'></i></a> <a onclick=\"rmfolder('"+fold+"')\"><i class='fa fa-minus'></i></a></ul>");   }
+
+
+        // if(i==3){ $("#"+f).append("<ul id="+fold+"><li> "+fold+" <a href='#' onclick=\"addfolder(4,'"+fold+"')\"><i class='fa fa-plus'></i></a> <a href='#' onclick=\"rmfolder('"+fold+"')\"><i class='fa fa-minus'></i></a></li></ul>"); }
+       
+
+       // var unique =new Date().valueOf();
+       //  if(i==1)
+       //   { $("#"+f).append("<ul id="+unique+">"+fold+" <a href='#' onclick=\"addfolder(2,'"+fold+"')\"><i class='fa fa-plus'></i></a> <a href='#' onclick=\"rmfolder('"+unique+"')\"><i class='fa fa-minus'></i></a></ul>"); }
+
+       //  if(i==2){$("#"+f).append("<li id="+unique+">"+fold+" <a href='#' onclick=\"addfolder(3,'"+fold+"')\"><i class='fa fa-plus'></i></a> <a href='#' onclick=\"rmfolder('"+unique+"')\"><i class='fa fa-minus'></i></a></li>");  }
+       //  if(i==3){ $("#"+f).append("<ul id="+unique+">"+fold+" <a href='#' onclick=\"addfolder(4,'"+fold+"')\"><i class='fa fa-plus'></i></a> <a href='#' onclick=\"rmfolder('"+unique+"')\"><i class='fa fa-minus'></i></a></ul>"); }
+  
+
+       }
+
+
+       </script>
+        <script>
+            $(document).ready(function () {
+                $('.i-checks').iCheck({
+                    checkboxClass: 'icheckbox_square-green',
+                    radioClass: 'iradio_square-green',
+                });
+
+
+            $('#data_5 .input-daterange').datepicker({
+                keyboardNavigation: false,
+                forceParse: false,
+                autoclose: true
+            });
+            $('#jstree1').jstree({
+            'core' : {
+                'check_callback' : true
+            },
+            'plugins' : [ 'types', 'dnd' ],
+            'types' : {
+                'default' : {
+                    'icon' : 'fa fa-folder'
+                },
+                'html' : {
+                    'icon' : 'fa fa-file-code-o'
+                },
+                'svg' : {
+                    'icon' : 'fa fa-file-picture-o'
+                },
+                'css' : {
+                    'icon' : 'fa fa-file-code-o'
+                },
+                'img' : {
+                    'icon' : 'fa fa-file-image-o'
+                },
+                'js' : {
+                    'icon' : 'fa fa-file-text-o'
+                }
+
+            }
+        });
+
+
+            Dropzone.options.myAwesomeDropzone = {
+
+                autoProcessQueue: false,
+                uploadMultiple: true,
+                parallelUploads: 100,
+                maxFiles: 100,
+
+                // Dropzone settings
+                init: function() {
+                    var myDropzone = this;
+
+                    this.element.querySelector("button[type=submit]").addEventListener("click", function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        myDropzone.processQueue();
+                    });
+                    this.on("sendingmultiple", function() {
+                    });
+                    this.on("successmultiple", function(files, response) {
+                    });
+                    this.on("errormultiple", function(files, response) {
+                    });
+                }
+
+            }
+
+
+            });
+        </script>
+</body>
+
+
+<!-- Mirrored from webapplayers.com/inspinia_admin-v2.1/form_basic.html by HTTrack Website Copier/3.x [XR&CO'2013], Sun, 31 May 2015 10:01:43 GMT -->
+</html>
