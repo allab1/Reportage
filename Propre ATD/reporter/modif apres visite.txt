@@ -1,0 +1,29 @@
+limiter la taille du text 
+
+
+-	verification de photo doublon avant attachement
+		les elements en double deviennent en rouge - apres modif de l'arbo et dans un 2em essaie d'attachement, les elements autorisés change de couleur (rouge ==> normal)
+- simple demande - sous condition 
+-par defaut (simple demande - non remarquable )
+-liste des personnes dans description generale - disabled dans les modal - copier/coller d'une liste separé par des (,)
+		- verification automatique des doublons 
+
+-identifiant du reportage à la sauvegarde - saisi libre pour le nom du reportage - generation du reportage en titre horodaté et faire une sauvegarde automatique
+- affichage instantané compteur de nmbre de charachtere saisi
+- (-)(+) ne doivent pas selectioner l'element
+- changement de dimenssion du navbar
+-body click hide unsellect
+-entrer description valide
+
+	remarquable false
+	nb char pour chaque input
+	person maxlenght(non)
+	16/10
+	modal nvx rep garde le nb de char saisit au dernier saisit
+	bug deplacement d'element (confirm)
+	 le passer en "readonly" avec affichage de la liste saisie au niveau description du reportage
+	===> QUESTION (tu me dira lundi matin) : Comment tu gËres Áa ? Je ne vois rien dans l'HTML.
+	champ personne generale est en lecture /ecriture avec jsonobj, 
+	mais le champ personne modal est en lecture du champ personne generale, ecriture dans l'objet json
+	- deplaccer un element est considÈrÈ un changemment, ceci doit autoriser une nouvelle sauvegarde
+
