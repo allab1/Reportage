@@ -1,0 +1,370 @@
+
+	- à la sauvegarde du reportage : 
+		- mise de l'objet JSON dans un élément de la page (DIV non affichée ou INPUT type="hidden") (avec sérialisation si nécessaire)
+	
+	- au rechargement du reportage :
+		- si l'élément HTML dédié (DIV non affichée ou INPUT type="hidden") n'est pas vide, prendre son innerHTML pour reconstituer l'objet JSON
+			 (avec désérialisation si nécessaire)
+	- libellé "Nouveau Reportage" à changer par le nom du reportage quand on charge un autre reportage sauvegardé
+	
+partie "Description de structure" (arborescence)
+------------------------------------------------
+- Les liens "Hide all" et "show all" ...
+ - doivent avoir leur libellés en français ("Enrouler tout" / "Dérouler tout")
+ - leur libellé doit commencer par une majuscule 
+ - doivent être séparés davantage entre eux (mettre 1,2 ou 3 "&nbsp;" entre)
+ - [DONE] "Enrouler tout" (Hide all) doit TOUJOURS avoir l'icône "-" (actuellement elle bascule entre "+" et "-"
+ - [DONE] "Dérouler tout" (show all)  doit TOUJOURS avoir l'icône "+"
+ - ces 2 libellés doivent avoir la même police sans serif qu'ailleurs sur l'arborescence (là on retrouve une police avec serif)
+
+- L'apparition des "+"/"-" est parfois erronnée quand on utilise "Enrouler tout" et qu'on déroule petit à petit (le noms en gras semblent OK.
+	==> devrait se résoudre si les fonctions "Enrouler tout" / "Dérouler tout" agissen sur le JSON + réaffichage de l'arbo'
+
+- [Modif] Réserver l'enroulement/déroulement" au clic sur les seuls "+"/"-"
+- [Modif] Gestion de la sélection d'un répertoire / article :
+	==> un clic sur le nom d'un répertoire / article le sélectionne. UN second clic dessus (ou clic sur autre répe' / article) le désélectionne
+	==> dans l'objet JSON, les répertoire / article auraont un attribut "estSelected" booléen par défaut à false
+
+- Message en cas de doublon dans un répertoire à corriger : "Cet element existe deja dans le repertoire" 
+	==> "Un élément de même nom existe déjà dans le répertoire." (message plus précis)
+
+- Message à la création d'un "Nouvel article" (2ème ligne) : "Un article ne peut contenir que des objets." 
+	==> Remplacer le terme "objets" par "documents"
+
+- [NORMALEMENT RéSOLU DANS PROCHAINE V.] Création (dans l'ordre) de l'arbo' suivante :
+	My_Web_Site          
+	      images       	<=== article
+	           my-photo.jpg
+	           logo.jpg
+	      rr          	<=== rép
+	      a suppr           <=== rép (avec espace dans son nom)
+	==> [BUG 1] Création d'un nouveau répertoire (nommé "a suppr 2") dans "a suppr".
+		===> LA modale se ferme, mais le rép' "a suppr 2" n'apparait pas.
+	==> [BUG 2] Création d'un nouvel article (nommé "q") dans "a suppr". 
+		===> Lors du clic sur [Valider] la fenêtre "Nouvel article", celle-ci reste, rien ne se passe. Par contre [Fermer] agit.
+	NB : Sous FF, j'ai un message dans la console JS : "too much recursion"	 reporter.js:235:1
+		(ce qui correspond à la fonction inserer_dans_arbo(item,idPere,obj=null) )
+
+ - clic sur le menu contextuel de la racine du reportage (arbo), menu "Editer", 2 cas :
+	- 1/ la partie "Description de reportage" est déroulée : le focus est mis sur le champs "Nom du projet". OK. Modif's faite de ces champs, [Valider]
+		==> Cette partie "Description de reportage" ne s'enroule plus comme à la saisie initiale.
+	- 2/ la partie "Description de reportage" est enroulée : ... et le reste. Elle devrait s'ouvrir avec focus comme dans le cas 1/
+
+ - des doublons de noms de documents sont possibles dans un article
+
+ - [DONE] des doublons de noms sont possibles à un même niveau, par exemple :
+		nom-projet          
+		  r       
+		  r2      <==== rep
+		  r2      <==== article
+
+	==> A interdire (que ce soit des répertoires, des articles, un mix des 2,  ou des documents)
+
+ - [DONE] un nom de répertoire avec des espaces empèche de mettre dedans un répertoire ou article
+		nom-projet          
+			r       
+				r2       
+					a       
+				aa       
+				r avec espace       <=== PB ici
+			r3    
+
+ - [DONE] un nom d'article avec des espaces empèche de mettre des doc's dedans
+
+- [NON REPRODUIT] En créant dans l'ordre cette arbo :
+	My-Web-Site          
+	      images       <=== article
+	           logo.jpg
+	           my-photo.jpg
+	      r       <=== répertoire
+	Il est impossible d'ajouter un article ou un répertoire dans "r" (pourtant il n'est que de niv.1)
+
+ - [DONE] quand on attache en plusieurs fois des documents à un article, les premiers doc's sont retirés (au moins visuellement de l'arbo')
+
+ - Sur la modale "Nouveau Répertoire" manque le bouton pour [Fermer] celle-ci (comme il en existe un pour "Nouvel article")
+	===> ajouter ce bouton [Fermer] 
+	     OU supprimer le bouton [Fermer] de la modale "Nouvel article"
+
+ - Je veux supprimer une répertoire vide ou un article vide : Le message "Attention ! cet élément peut contenir des données, êtes-vous sûr de vouloir supprimer  ?" s'affiche
+	===> tester  avant si ce répertoire/article est vide pour ne pas afficher ce message dans ce cas
+	===> orthographe correcte du message = "Attention ! Cet élément peut contenir d'autres éléments, êtes-vous sûr de vouloir le supprimer ?"
+
+- [Idée, à implémenter ?] Ajout / menu context rep: Monter / Descendre (pr changer l'ordre au sein d'un niveau d'arborescence, ou des documents au sein d'un article)
+
+
+*** OLD A VERIF ***
+[EN_COURS] Je crée une arborescence :
+Projet          
+      rep       
+          rep2       
+              art2     
+      art      
+      rep3  
+sans fichiers associés dans les articles.
+Si je clique sur art, art2 ou rep3, je vois le look d'un répertoire enroulé, ce qui est inutile car vide et trompeur (on a tendance à recliquer dessus pour vérifier... qu'il est vide)
+	==> Le clic sur des répertoire vides (pas de sous-répertoire) ou des articles vides devrait être inopérant.
+
+- [BUG FF,GC] Différents bugs / enroulement/déroulement de l'arborescence :
+	séquence de test :
+	création de l'arbo suivante :
+		Firefox 	===> c'est le nom que j'ai donné à l'article pour savoir sous quel navigateur je fais le test    
+		      rep       
+		          rep2       
+		      art	===> vide de doc'
+	- [BUG 1] clic sur [Enrouler tout] une arborescence ===> le nom du reportage devrait passer en gras
+	- un clic sur ce nom de reportage ===> déroulement du niveau 1 OK, les rép'/art' de niv.1 sont en gras OK
+		===> [BUG 2] l'article pourtant vide a un "+" devant son nom.
+	- un clic sur ce nom de reportage ===> enroulement OK, cette fois-ci le nom du reportage est correctement en gras OK
+	- [BUG 3] clic sur [Dérouler tout] une arborescence ===> déroulement OK, mais le nom du reportage est resté en gras
+	- [BUG 4] l'article pourtant vide a un "-" devant son nom.
+
+*** OLD A VERIF ***
+
+
+partie "Fichiers à attacher"
+----------------------------
+ - des fichiers images de type ".png" n'apparaissent pas dans l'explorateur de fichiers.
+	==> Voir quels sont les types autorisés (sans doute à élargir)
+
+*** OLD A VERIF ***
+ - Il y a toujours le message erronée à la suppression de fichiers sélectionnés (clic sur la croix à gauche de leur nom)
+	(par contre plus ce message message quand on clic sur [Vider] : Ce qui est OK)
+
+ - (Re)Mettre le texte indiquant qu'il faut cliquer pour ajouter (sélectionner plutôt) des fichiers
+	==> Texte à supprimer quand des fichiers ont déjà
+
+	==> actuellement dans le code on trouve :
+		<div class="dz-message" data-dz-message="">
+		<span>Ajouter vos fichiers</span>
+		</div>
+	    mais cela ne s'affiche pas	
+
+ - Changez ce texte en "Cliquer ici pour sélectionner des fichiers". 
+	==> Texte à supprimer quand des fichiers ont déjà
+*** OLD A VERIF ***
+
+Par rapport au code:
+--------------------
+ - [A VERIFIER] génération d'id pour les éléments de l'objet JSON "reportage" : 
+	==> le mécanisme empéchant d'avoir des doublons d'id (plusieurs générés dans la même ms) est-il en place ?
+
+Error: Le type de contenu du document n'est pas du HTML : undefined
+
+Result: 13 erreurs / 0 avertissements		==> *** On en avait 22, puis 19 dans les précédents tests ***
+
+Info: W3c Online Validation
+
+line 249 column 59 - Erreur: The “align” attribute on the “div” element is obsolete. Use CSS instead.
+line 253 column 100 - Erreur: Element “span” not allowed as child of element “ul” in this context. (Suppressing further errors from this subtree.)
+line 253 column 138 - Erreur: Text not allowed in element “ul” in this context.
+line 253 column 144 - Erreur: Text not allowed in element “ul” in this context.
+line 253 column 150 - Erreur: Text not allowed in element “ul” in this context.
+line 254 column 66 - Erreur: Element “div” not allowed as child of element “ul” in this context. (Suppressing further errors from this subtree.)
+line 262 column 73 - Erreur: Element “div” not allowed as child of element “ul” in this context. (Suppressing further errors from this subtree.)
+line 325 column 60 - Erreur: The “align” attribute on the “table” element is obsolete. Use CSS instead.
+line 342 column 147 - Erreur: Bad value “false” for attribute “checked” on element “input”.
+line 347 column 88 - Erreur: Bad value “textarea” for attribute “type” on element “input”.
+line 414 column 17 - Erreur: End tag had attributes.
+line 415 column 7 - Erreur: End tag for  “body” seen, but there were unclosed elements.
+line 24 column 12 - Erreur: Unclosed element “div”.
+
+
+*** OLD A VERIF ***
+ - arboscence des fichiers (scripts, css, img, etc...)
+	===> mettre les images "drapeau" dans le répertoire "img" (et adapter en conséquence les liens dans les scripts)
+
+ - Index.html
+	===> page à renommer en "index.html" (i minuscule)
+
+Error: Le type de contenu du document n'est pas du HTML : undefined
+
+Result: 19 erreurs / 0 avertissements		==> *** On en avait 22 dans le précédent test ***
+
+Info: W3c Online Validation
+
+line 208 column 80 - Erreur: Bad value “fichier attache” for attribute “id” on element “span”: An ID must not contain whitespace.
+line 247 column 55 - Erreur: The “align” attribute on the “div” element is obsolete. Use CSS instead.
+line 250 column 69 - Erreur: Element “span” not allowed as child of element “ul” in this context. (Suppressing further errors from this subtree.)
+line 250 column 116 - Erreur: Text not allowed in element “ul” in this context.
+line 250 column 122 - Erreur: Text not allowed in element “ul” in this context.
+line 250 column 128 - Erreur: Text not allowed in element “ul” in this context.
+line 251 column 58 - Erreur: Element “div” not allowed as child of element “ul” in this context. (Suppressing further errors from this subtree.)
+line 257 column 61 - Erreur: Element “div” not allowed as child of element “ul” in this context. (Suppressing further errors from this subtree.)
+line 454 column 49 - Erreur: The “align” attribute on the “table” element is obsolete. Use CSS instead.
+line 460 column 158 - Erreur: Element “div” not allowed as child of element “label” in this context. (Suppressing further errors from this subtree.)
+line 461 column 100 - Erreur: Bad value “textarea” for attribute “type” on element “input”.
+*** OLD A VERIF ***
+
+
+AméLIO / RAF
+============
+*** OLD A VERIF ***
+IHM globale
+-----------
+ - i18n : détection automatique de la langue du navigateur, pour adapter la traduction ad hoc
+	===> Si la langue du navigateur ne fait pas partie des langues d'interface (= fr, en,es), basculement vers une langue par défaut (arbitrairement : fr)
+
+
+partie "Description de structure" (arborescence)
+------------------------------------------------
+
+ - [A implémenter ?] Le double-clic sur un nom de répertoire ou d'article ouvre la modale de saisie de ces méta-donnée en mode "édition"
+ - [A implémenter ?] Affichage d'une div affichants les méta-données au survol d'un nom de répertoire ou d'article
+
+
+partie "Etat du formulaire"
+---------------------------
+ - boutons [Sauvegarder], [Recharger] et [Vider] à rendre plus visible 
+	==> look de l'actuel bouton [Valider], même couleur pour "Sauvegarder" / "Recharger", rouge atténué (pas trop vif) pour "Vider"
+	==> pour "Vider", implémenter un confirm JS avant de faire/annuler cette action
+
+ - [A implémenter ?] boutons [Sauvegarder] en "vert" initialement, à passer en "gris" lorsque la sauvegarde est faite (par clic dessus),
+	puis à repasser en "vert" dès qu'une modification à été faite dans l'arborescence (pour montrer que des modif's n'ont pas été sauvegardées)
+
+ - [A implémenter ?] Sauvegardes multiples ? Pour permettre de sauvegarder plusieurs reportage saisis simultanément
+	- sous le nom "<nom_saisi_pour_le_reportage>_aaaammjj_hh-mm"
+	- au rechargement, proposer une liste cliquable des différentes sauvegardes
+*** OLD A VERIF ***
+	
+
+
+======================================
+====== RESTE / Tests précédents ======
+======================================
+
+
+Tests /Par rapport à la v encours_20170223_11h00 :
+==================================================
+Dans le zip :
+-------------
+ - mettre un fichier "historique.txt" mis-à-jour [date / heure (de livraison) : ajouts, modifications]
+ - nommage du zip avec horodatage de création du ZIP (ex. : encours_20170223_11h00.zip )
+
+
+partie "Description de reportage"
+---------------------------------
+ - Je ne saisis que le "Nom de projet" puis [Valider] : Le message "Il vous manque un champ *" apparait en bas de cette zone
+	===> PLacement du message (sans l'astérique, ou l'astérisque avant celui-ci) OK, 
+	     MAIS manque une astérisque rouge (même style) juste devant les champs manquants (ici après "Nom de projet")
+
+ - libellé "Nom de projet" à changer en "Nom du reportage"
+
+ - Je saisis une date de début et une date de fin à l'aide du datepicker, OK. Actuelleemnt je peux sélectionner le texte des dates et les effacer... 
+	mais quand je ré-utilise le datepicker, je vois que les dates précédemment choisis sont toujours sur le calendrier. (Et il y a des chances
+	qu'on les retrouvent au final dans un enregistrement de foormulaire ou dans le XML finalement généré.)
+	==> Soit l'effacement du texte des dates ré-initialise le datpicker, soit l'effacement de ce texte est empéché (mais 
+		il faut au moins pouvoir changer la date par le datepicker)
+ - Concernant la saisie des dates, actuellement il y a parfois un bug dans le contrôle entre dates de début et date de fin 
+	(parfois on arrive de à sélectionner une date_fin < date_début)
+	==> faire un test au final pour que  : date_fin >= date_début
+		==> Si ce n'est pas le cas, afficher le message d'erreur de saisie "LA date de fin doit être supérieure ou égale à celle de début."
+
+ - [BUG] Ma saisie complète de la "Description de reportage" semble OK (plus de message d'erreur, cette zone s'enroule), OK, mais 
+	la racine du reportage dans l'arborescence ne prend pas le nom du reportage.
+
+
+partie "Etat du formulaire"
+---------------------------
+ - boutons [Sauvegarder], [Recharger] et [Vider] inopérants. Bug ou pas encore implémenté ?
+
+
+partie "Description de structure" (arborescence)
+------------------------------------------------
+ - Je veux supprimer une répertoire vide ou un article vide : Le message "Attention ! cet élément peut contenit d'autres éléments , êtes-vous sûr ?" s'affiche
+	===> tester  avant si ce répertoire/article est vide pour ne pas afficher ce message dans ce cas
+	===> orthographe correcte du message = "Attention ! Cet élément peut contenir d'autres éléments, êtes-vous sûr ?"
+
+Je crée une arborescence :
+Projet          
+      rep       
+          rep2       
+              art2     
+      art      
+      rep3  
+sans fichiers associés dans les articles.
+Si je clique sur art, art2 ou rep3, je vois le look d'un répertoire enroulé, ce qui est inutile car vide et trompeur (on a tendance à recliquer dessus pour vérifier... qu'il est vide)
+	==> Le clic sur des répertoire vides (pas de sous-répertoire) ou des articles vides devrait être inopérant.
+
+Les liens "Hide all" et "show all" ...
+ - doivent avoir leur libellés en français ("Enrouler tout" / "Dérouler tout")
+ - leur libellé doit commencer par une majuscule 
+ - doivent être séparés davantage entre eux (mettre 1,2 ou 3 "&nbsp;" entre)
+ - "Hide all" doit TOUJOURS avoir l'icône "-" (actuellement elle bascule entre "+" et "-"
+ - "show all"  doit TOUJOURS avoir l'icône "+"
+ - ces 2 libellés doivent avoir la même police sans serif qu'ailleurs sur l'arborescence (là on retrouve une police avec serif)
+
+
+partie "Fichiers à attacher"
+----------------------------
+ - Il y a toujours le message erronée à la suppression de fichiers sélectionnés (clic sur la croix à gauche de leur nom)
+	(par contre plus ce message message quand on clic sur [Vider] : Ce qui est OK)
+
+ - (Re)Mettre le texte indiquant qu'il faut cliquer pour ajouter (sélectionner plutôt) des fichiers
+	==> Texte à supprimer quand des fichiers ont déjà
+
+	==> actuellement dans le code on trouve :
+		<div class="dz-message" data-dz-message="">
+		<span>Ajouter vos fichiers</span>
+		</div>
+	    mais cela ne s'affiche pas	
+
+ - Changez ce texte en "Cliquer ici pour sélectionner des fichiers". 
+	==> Texte à supprimer quand des fichiers ont déjà
+
+
+Par rapport au code:
+--------------------
+ - arboscence des fichiers (scripts, css, img, etc...)
+	===> mettre les images "drapeau" dans le répertoire "img" (et adapter en conséquence les liens dans les scripts)
+
+ - Index.html
+	===> page à renommer en "index.html" (i minuscule)
+
+Error: Le type de contenu du document n'est pas du HTML : undefined
+
+Result: 19 erreurs / 0 avertissements		==> *** On en avait 22 dans le précédent test ***
+
+Info: W3c Online Validation
+
+line 208 column 80 - Erreur: Bad value “fichier attache” for attribute “id” on element “span”: An ID must not contain whitespace.
+line 247 column 55 - Erreur: The “align” attribute on the “div” element is obsolete. Use CSS instead.
+line 250 column 69 - Erreur: Element “span” not allowed as child of element “ul” in this context. (Suppressing further errors from this subtree.)
+line 250 column 116 - Erreur: Text not allowed in element “ul” in this context.
+line 250 column 122 - Erreur: Text not allowed in element “ul” in this context.
+line 250 column 128 - Erreur: Text not allowed in element “ul” in this context.
+line 251 column 58 - Erreur: Element “div” not allowed as child of element “ul” in this context. (Suppressing further errors from this subtree.)
+line 257 column 61 - Erreur: Element “div” not allowed as child of element “ul” in this context. (Suppressing further errors from this subtree.)
+line 454 column 49 - Erreur: The “align” attribute on the “table” element is obsolete. Use CSS instead.
+line 460 column 158 - Erreur: Element “div” not allowed as child of element “label” in this context. (Suppressing further errors from this subtree.)
+line 461 column 100 - Erreur: Bad value “textarea” for attribute “type” on element “input”.
+
+
+
+AméLIO / RAF
+============
+IHM globale
+-----------
+ - i18n : détection automatique de la langue du navigateur, pour adapter la traduction ad hoc
+	===> Si la langue du navigateur ne fait pas partie des langues d'interface (= fr, en,es), basculement vers une langue par défaut (arbitrairement : fr)
+
+
+partie "Description de structure" (arborescence)
+------------------------------------------------
+
+ - [A implémenter ?] Le double-clic sur un nom de répertoire ou d'article ouvre la modale de saisie de ces méta-donnée en mode "édition"
+ - [A implémenter ?] Affichage d'une div affichants les méta-données au survol d'un nom de répertoire ou d'article
+
+
+partie "Etat du formulaire"
+---------------------------
+ - boutons [Sauvegarder], [Recharger] et [Vider] à rendre plus visible 
+	==> look de l'actuel bouton [Valider], même couleur pour "Sauvegarder" / "Recharger", rouge atténué (pas trop vif) pour "Vider"
+	==> pour "Vider", implémenter un confirm JS avant de faire/annuler cette action
+
+ - [A implémenter ?] boutons [Sauvegarder] en "vert" initialement, à passer en "gris" lorsque la sauvegarde est faite (par clic dessus),
+	puis à repasser en "vert" dès qu'une modification à été faite dans l'arborescence (pour montrer que des modif's n'ont pas été sauvegardées)
+
+ - [A implémenter ?] Sauvegardes multiples ? Pour permettre de sauvegarder plusieurs reportage saisis simultanément
+	- sous le nom "<nom_saisi_pour_le_reportage>_aaaammjj_hh-mm"
+	- au rechargement, proposer une liste cliquable des différentes sauvegardes
+	

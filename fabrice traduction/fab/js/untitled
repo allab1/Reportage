@@ -1,0 +1,36 @@
+var jsonObj={
+  id          :0 ,
+  nom_reporter: "TEXT",         //--- information "en dur" dans l'HTML (ou issu d'un "fichier" de conf')
+  nom_report: "TEXT",
+  commanditaire_report: "TEXT",
+  periode_debut_report: "DATE_AAAAMMJJ",
+  periode_fin_report: "DATE_AAAAMMJJ",
+  description_report: "TEXT",
+  enroul    : true,
+  fils  : 
+    { 
+      1:{
+          id: "NNN",
+          enroul: Boolean,           //--- par defaut  : false (= déroulé)
+          estArticle: true,         //--- Boolean : true => article / false => répertoire
+          id_parent: "NNN",
+          nom_ter: "TEXT",
+          communicable: true,
+          personnes: "la liste des personnes",
+          description_ter: "TEXT",
+          fils:{80:"test"},
+          contenu: {80:"test"}
+        } ,
+     2:{
+      id: "NNN",
+      enroul: Boolean,           //--- par defaut  : false (= déroulé)
+      estArticle: false,         //--- Boolean : true => article / false => répertoire
+      id_parent: "NNN",
+      nom_rep: "TEXT",
+      description_rep: "TEXT",
+      fils:{},
+      contenu: {80:"test"}
+    } 
+
+  }
+}

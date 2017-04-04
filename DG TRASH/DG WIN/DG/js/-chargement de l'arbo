@@ -1,0 +1,9 @@
+	-chargement de l'arbo
+	-conversion de l'arbo --> Json compatible avec notre arbo virtuel ( enrouler/derouler gras/normal )
+	-test de compatibilité de niveau
+	-test de compatibilité de relation article/repertoire/fichier
+	-tracage d'arbo
+	-affichage de donnée dans la modal
+	-modification d'objet via la modal
+	-representation de bref de données dans la div flottante
+-selectable 

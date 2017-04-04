@@ -1,0 +1,283 @@
+
+Tests / par rapport à la v "Reportage_v.2017-03-13_13h37 (encours inter)" :
+=================================================================================
+
+langue_repotage
+langue de chaque document
+
+
+
+
+Dans le zip :
+-------------
+*** OLD A VERIF ***
+ - mettre un fichier "historique.txt" mis-à-jour [date / heure (de livraison) : ajouts, modifications]
+ - nommage du zip avec horodatage de création du ZIP (ex. : encours_20170223_11h00.zip )
+*** OLD A VERIF ***
+
+
+partie générale / entête / pied-de-page
+---------------------------------------
+ - libellé "Nouveau Reportage" à changer par le nom du reportage 
+	- quand il est saisi dans sa description + [Valider]
+	- quand on charge un autre reportage sauvegardé
+
+partie "Description de reportage"
+---------------------------------
+ - Je ne saisis que le "Nom de projet" puis [Valider] : Le message "Un champ manquant ..." apparait en bas de cette zone
+	===> Placement du message (sans l'astérique, ou l'astérisque avant celui-ci) OK, 
+	     MAIS manque une astérisque rouge (ou autre signe) indiquant le(s) champs manquant(s) (ici sur "Nom de projet")
+
+ - message d'erreur de saisie peu parlant "Un champ manquant ..."
+	===> manque la précision sur les champs en cause (marquage de ces champs : libellés en gras + rouge ou astérisques après le libellé)
+
+
+ - [DONE] libellé "Nom de projet" à changer en "Nom du reportage"
+
+ - [BUG] La date du jour est présélectionnée à l'ouverture initiale du datepicket (chiffre en bleu). Si je cliques dessus cela n'affiche pas de date.
+	Je fais cela pour date_début et date_fin. 
+	===> Ensuite je peux utiliser le datepicker pour mettre un couple de dates même incohérent (date_début > date_fin)
+
+ - [DONE][BUG] Saisie d'une date de début (05/03/2017), puis saisie date de fin : J'ai pu saisir une date de fin antérieure à celle du début (04/03/2017).
+	==> faire un test au final pour que  : date_fin >= date_début
+		==> Si ce n'est pas le cas, afficher le message d'erreur de saisie "La date de fin doit être supérieure ou égale à celle de début."
+                          - test de date
+                          -fichier backup.son
+                          - div wrapper
+                          -Un élément de même nom existe déjà dans le répertoire.
+                          -button fermer dans les deux modales rep/art
+                          -<span>Ajouter vos fichiers</span>
+                          -molinette_tracage_arbo
+                          -utilisation d'un objet "event" non défini
+                          - [EN COURS, A VERIF] JS : Toute déclaration de variable doit utiliser le mot-clé "var"
+                          -	verifier_doublant() ==> verifier_doublon()
+                          -	faire le énage dans le répertoire "img" (nombreuses images inutiles) ==> nvx volume (6mo)
+                          - index min
+                          - 
+
+
+
+
+*** OLD A VERIF ***
+*** OLD A VERIF ***
+
+
+partie "Etat du formulaire"
+---------------------------
+- [BUG] Actuellement quand on a plusieurs brouillons de reportage enregistrés, on peut recharger un autre alors que celui en-cours a été modifié sans que les modifications soient enregistrées
+	==> au clic sur [Recharger] un brouillon (celui sélectionné dans la liste), si l'actuel a des modifications non-sélectionnés, afficher un confirm JS
+		"Des modifications n'ont pas été sauvegardées. Voulez-vous sauvegarder avant l'ouverture de l'autre de brouillon ? [Oui][Non]"
+			==> choix [Oui] = Sauvegarde du brouillon actuel + chargement du brouillon sélectionné
+			==> choix [Non] = Chargement du brouillon sélectionné sans sauvegarde
+
+- [BUG FF 52.0 Win 32bits] La sauvegarde de brouillon de reportage ([Sauvegarder]) ne fonctionne pas (ou mal, ou pas complétement) sour FF
+	==> le rechargement ne fonctionne pas
+
+- [MODIF] fichier résultant nommé actuellement "backup.json"
+	===> a renommer (<nom du reportage>_<horodatage à l'anglaise>, même principe que pour les noms de sauvegarde de brouillon
+
+*** OLD A VERIF ***
+*** OLD A VERIF ***
+
+	
+
+
+partie "Description de structure" (arborescence)
+------------------------------------------------
+
+- Les liens "Hide all" et "show all" ...
+ - [DONE] doivent avoir leur libellés en français ("Enrouler tout" / "Dérouler tout")
+ - [DONE] leur libellé doit commencer par une majuscule 
+ - doivent être séparés davantage entre eux (mettre 1,2 ou 3 "&nbsp;" entre)
+ - [DONE] "Enrouler tout" (Hide all) devrait... enrouler tout (seul la racine est alors visible (ou alors renommer le lien en "Enrouler au premier niveau")
+ - ces 2 libellés doivent avoir la même police sans serif qu'ailleurs sur l'arborescence (là on retrouve une police avec serif)
+
+- [MODIF] Gestion de la sélection d'un répertoire / article :
+	==> ajout dans le JSON d'une partie "configuration", avec notamment un booléen "isSelectable" (on peut sélectionner un répertoire si true)
+	===> 2 cas : 
+		- (isSelectable) ==> un rep/art. nouvellement créé sera "selected" et le restera jusqu'à un clic ailleurs (autre rep/art ou dans le "vide")
+		- (!isSelectable) ==> un rep/art. nouvellement créé sera "selected" durant qqs secondes, puis redeviendra normal
+	==> un clic sur le nom d'un répertoire / article le sélectionne. Un second clic dessus (ou clic sur autre rép' / article) le désélectionne
+	==> dans l'objet JSON, les répertoires / articles auraont un attribut "estSelected" booléen par défaut à false
+
+- Message en cas de doublon dans un répertoire à corriger : "Cet element existe deja dans le repertoire" 
+	==> "Un élément de même nom existe déjà dans le répertoire." (message plus précis)
+
+- [A TESTER][AMéLIO] gérer le Drag'n'drop d'une sous-arborescence via jQuery
+
+ - Sur la modale "Nouveau Répertoire" manque le bouton pour [Fermer] celle-ci (comme il en existe un pour "Nouvel article")
+	===> ajouter ce bouton [Fermer] 
+	     OU supprimer le bouton [Fermer] de la modale "Nouvel article"
+
+ - Je veux supprimer une répertoire vide ou un article vide : Le message "Attention ! cet élément peut contenir des données, êtes-vous sûr de vouloir supprimer  ?" s'affiche
+	===> tester avant si ce répertoire/article est vide pour ne pas afficher ce message dans ce cas
+	===> orthographe correcte du message = "Attention ! Cet élément peut contenir d'autres éléments, êtes-vous sûr de vouloir le supprimer ?"
+
+ - la suppression dans rép'/art' ne demande plus de confirmation depuis l'introduction du drag'n'drop
+	===> modifier la fonction de suppression, lui ajouter un param "withConfirm" pour afficher ou non la fenêtre de confirmation ou non (cas utiliser par le drap'n'drop) selon le besoin
+
+- à terme suprimer les 3 liens de tests : "test test test"
+
+
+
+- [DONE][BUG] Je crée un répertoire à la racine ("r") ==> l'icône "flèche vers le haut" pour monter d'un cran le répertoire s'affiche alors qu'il est seul.
+
+- [DONE] L'apparition des "+"/"-" est parfois erronnée quand on utilise "Enrouler tout" et qu'on déroule petit à petit (le noms en gras semblent OK.
+	==> devrait se résoudre si les fonctions "Enrouler tout" / "Dérouler tout" agissen sur le JSON + réaffichage de l'arbo'
+
+- [DONE][BUG] Les répertoires / articles d'un même niveau ne sont pas alignés selon qu'ils ont un signe devant (+/6) ou pas (cas des rép./art. vides)
+
+- [DONE][MODIF] Changement d'aspect (classe CSS) au survol d'un rép./art.
+
+- [DONE][BUG] clic sur le menu contextuel de la racine du reportage (arbo), menu "Editer", 2 cas :
+	- 1/ la partie "Description de reportage" est déroulée : le focus est mis sur le champs "Nom du projet". OK. Modif's faite de ces champs, [Valider]
+		==> Cette partie "Description de reportage" ne s'enroule plus comme à la saisie initiale.
+	- 2/ la partie "Description de reportage" est enroulée : ... et le reste. Elle devrait s'ouvrir avec focus comme dans le cas 1/
+
+- [DONE] Message à la création d'un "Nouvel article" (2ème ligne) : "Un article ne peut contenir que des objets." 
+	==> Remplacer le terme "objets" par "documents"
+
+- [DONE] Drag'n'drop d'une sous-arborescence pour la rattacher ailleurs.
+
+- [DONE][MODIF] Réserver l'enroulement/déroulement" au clic sur les seuls "+"/"-"
+
+- [DONE] Ajout / menu context rep: Monter / Descendre (pr changer l'ordre au sein d'un niveau d'arborescence, ou des documents au sein d'un article)
+
+
+*** OLD A VERIF ***
+*** OLD A VERIF ***
+
+
+
+partie "Fichiers à attacher"
+----------------------------
+ - des fichiers images de type ".png" n'apparaissent pas dans l'explorateur de fichiers.
+	==> Voir quels sont les types autorisés (sans doute à élargir)
+
+ - (Re)Mettre le texte indiquant qu'il faut cliquer pour ajouter (sélectionner plutôt) des fichiers
+	==> Texte à supprimer quand des fichiers ont déjà été sélectionnés
+
+	==> actuellement dans le code on trouve :
+		<div class="dz-message" data-dz-message="">
+		<span>Ajouter vos fichiers</span>
+		</div>
+	    mais cela ne s'affiche pas	
+
+ - Changez ce texte en "Cliquer ici pour sélectionner des fichiers". 
+	==> Texte à supprimer quand des fichiers ont déjà
+
+*** OLD A VERIF ***
+ - Il y a toujours le message erronée à la suppression de fichiers sélectionnés (clic sur la croix à gauche de leur nom)
+	(par contre plus ce message message quand on clic sur [Vider] : Ce qui est OK)
+
+*** OLD A VERIF ***
+
+Par rapport au code:
+--------------------
+ - [BUG FF 52.0 Win32][reporter.js] function showinfo(elem,ev) : utilisation d'un objet "event" non défini
+
+ - [EN COURS, A VERIF] JS : Toute déclaration de variable doit utiliser le mot-clé "var"
+
+ - [à RENOMMER] function molinette_tracage_arbo() : (déjà c'est "moulinette", et surtout c'est de l'argot)
+	==> generer_HTML_items_arbo()
+ - [à RENOMMER] function : verifier_doublant() ==> verifier_doublon()
+
+ - [HTML] L'élément :     <div id="wrapper">
+	n'est pas fermé ===> Ajpouter la balise fermante.
+
+ - arborescence des fichiers (scripts, css, img, etc...)
+	===> faire le ménage dans le répertoire "img" (nombreuses images inutiles)
+
+ - Index.html
+	===> page à renommer en "index.html" (i minuscule)
+
+*** OLD A VERIF ***
+*** OLD A VERIF ***
+
+
+AméLIO / RAF
+============
+IHM globale
+-----------
+ - [DONE] i18n : mécanisme de traduction des messages inclus dans le JS
+
+ - [AméLIO ?] i18n : détection automatique de la langue du navigateur, pour adapter la traduction ad hoc
+	===> Si la langue du navigateur ne fait pas partie des langues d'interface (= fr, en,es), basculement vers une langue par défaut (arbitrairement : fr)
+
+
+partie "Description de structure" (arborescence)
+------------------------------------------------
+
+ - [A implémenter ?] Le double-clic sur un nom de répertoire ou d'article ouvre la modale de saisie de ces méta-donnée en mode "édition"
+ - [DONE] Affichage d'une div affichant les méta-données au survol d'un nom de répertoire ou d'article
+ - [DONE] effet au survol d'un élément (rép'/art./doc')
+
+
+partie "Etat du formulaire"
+---------------------------
+ - boutons [Sauvegarder], [Recharger] et [Vider] à rendre plus visible 
+	==> look de l'actuel bouton [Valider], même couleur pour "Sauvegarder" / "Recharger", rouge atténué (pas trop vif) pour "Vider"
+	==> pour "Vider", implémenter un confirm JS avant de faire/annuler cette action
+
+ - [A implémenter ?] boutons [Sauvegarder] en "vert" initialement, à passer en "gris" lorsque la sauvegarde est faite (par clic dessus),
+	puis à repasser en "vert" dès qu'une modification à été faite dans l'arborescence (pour montrer que des modif's n'ont pas été sauvegardées)
+
+ - [EN COURS] Sauvegardes multiples ? Pour permettre de sauvegarder plusieurs reportage saisis simultanément
+	- sous le nom "<nom_saisi_pour_le_reportage>_aaaammjj_hh-mm"
+	- au rechargement, proposer une liste cliquable des différentes sauvegardes, classé par nom et par ordre antéchronologique
+	
+
+
+======================================
+====== RESTE / Tests précédents ======
+======================================
+
+
+Tests /Par rapport à la v encours_20170223_11h00 :
+==================================================
+Dans le zip :
+-------------
+ - mettre un fichier "historique.txt" mis-à-jour [date / heure (de livraison) : ajouts, modifications]
+ - nommage du zip avec horodatage de création du ZIP (ex. : encours_20170223_11h00.zip )
+
+
+partie "Description de reportage"
+---------------------------------
+
+
+partie "Etat du formulaire"
+---------------------------
+
+
+partie "Description de structure" (arborescence)
+------------------------------------------------
+ - Je veux supprimer une répertoire vide ou un article vide : Le message "Attention ! cet élément peut contenit d'autres éléments , êtes-vous sûr ?" s'affiche
+	===> tester  avant si ce répertoire/article est vide pour ne pas afficher ce message dans ce cas
+	===> orthographe correcte du message = "Attention ! Cet élément peut contenir d'autres éléments, êtes-vous sûr ?"
+
+
+partie "Fichiers à attacher"
+----------------------------
+ - Il y a toujours le message erronée à la suppression de fichiers sélectionnés (clic sur la croix à gauche de leur nom)
+	(par contre plus ce message message quand on clic sur [Vider] : Ce qui est OK)
+
+ - Changer le texte indiquant qu'il faut cliquer pour ajouter (sélectionner plutôt) des fichiers
+	===> "Ajouter vos fichiers..." en "Cliquer ici pour sélectionner des fichiers". 
+
+
+Par rapport au code:
+--------------------
+
+
+AméLIO / RAF
+============
+IHM globale
+-----------
+
+
+partie "Description de structure" (arborescence)
+------------------------------------------------
+
+
+partie "Etat du formulaire"
+---------------------------
